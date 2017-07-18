@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dip"
+    android:layout_gravity="center_vertical"
+    android:gravity="center_vertical"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="儲存文字 : "
+        />
+    <EditText
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="請輸入儲存文字"
+        />
+    <Button
+        android:id="@+id/setBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="文字儲存至SD卡"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="#000000"
+        android:layout_marginTop="40dip"
+        android:layout_marginBottom="40dip"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="讀取文字 : "
+        />
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <Button
+        android:id="@+id/getBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="讀取SD卡文字"
+        />
+</LinearLayout>
