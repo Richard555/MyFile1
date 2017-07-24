@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     //顯示讀取文字的TextView
     private TextView mText;
 
+    String absPath = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,25 +41,32 @@ public class MainActivity extends AppCompatActivity {
             {
                 try
                 {
-                    File mSDFile = null;
+ //                   File mSDFile = null;
 
-                    //檢查有沒有SD卡裝置
-                    if(Environment.getExternalStorageState().equals( Environment.MEDIA_REMOVED))
-                    {
-                        Toast.makeText(MainActivity.this , "沒有SD卡!!!" , Toast.LENGTH_SHORT ).show();
-                        return ;
-                    }
-                    else
-                    {
+//                    //檢查有沒有SD卡裝置
+//                    if(Environment.getExternalStorageState().equals( Environment.MEDIA_REMOVED))
+//                    {
+//                        Toast.makeText(MainActivity.this , "沒有SD卡!!!" , Toast.LENGTH_SHORT ).show();
+//                        return ;
+//                    }
+//                    else
+//                   {
                         //取得SD卡儲存路徑
-                        mSDFile = Environment.getExternalStorageDirectory();
-                    }
+//                        mSDFile = Environment.getExternalStorageDirectory();
+//                    }
 
-                    String aa = mSDFile.getParent();
-                    String bb = mSDFile.getName();
+//                  File mSDFile = new File ("/storage/emulated/0");
+//                  File mSDFile = new File ("/storage/usbdisk6");
+                    File mSDFile = new File ("/mnt/media_rw/usbdisk6");
+
+
+                    String parent = mSDFile.getParent();
+                    String Name   = mSDFile.getName();
+                           absPath= mSDFile.getAbsolutePath();
 
                     //建立文件檔儲存路徑
-                    File mFile = new File(mSDFile.getParent() + "/" + mSDFile.getName() + "/MyAndroid");
+//                  File mFile = new File(mSDFile.getParent() + "/" + mSDFile.getName() + "/MyAndroid");
+                    File mFile = new File(absPath + "/MyAndroid");
 
                     //若沒有檔案儲存路徑時則建立此檔案路徑
                     if(!mFile.exists())
@@ -66,14 +75,15 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     //取得mEdit文字並儲存寫入至SD卡文件裡
-                    FileWriter mFileWriter = new FileWriter( mSDFile.getParent() + "/" + mSDFile.getName() + "/MyAndroid/Pubby.txt" );
+                    FileWriter mFileWriter = new FileWriter( absPath + "/MyAndroid/Pubby.txt" );
 
                     mFileWriter.write(mEdit.getText().toString());
                     mFileWriter.close();
-                    Toast.makeText(MainActivity.this, "已儲存文字", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "File writing success!", Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e)
                 {
+                    Toast.makeText(MainActivity.this, "File writing error", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -86,9 +96,10 @@ public class MainActivity extends AppCompatActivity {
                 try
                 {
                     //取得SD卡儲存路徑
-                    File mSDFile = Environment.getExternalStorageDirectory();
+                    //File mSDFile = Environment.getExternalStorageDirectory();
+
                     //讀取文件檔路徑
-                    FileReader mFileReader = new FileReader(mSDFile.getParent() + "/" + mSDFile.getName() + "/MyAndroid/Pubby.txt");
+                    FileReader mFileReader = new FileReader(absPath + "/MyAndroid/Pubby.txt");
 
                     BufferedReader mBufferedReader = new BufferedReader(mFileReader);
                     String mReadText = "";
